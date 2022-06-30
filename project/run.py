@@ -77,8 +77,8 @@ def main():
                         elif text is not None:
                             print("run.py: ", text)
                             order_list.Order(text)
-    
-                        print(text)
+
+                        print("작업 끝")
 
 
 if __name__ == '__main__':

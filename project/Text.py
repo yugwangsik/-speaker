@@ -4,13 +4,13 @@ import time
 
 def play():
     pygame.mixer.init()
-    pygame.mixer.music.load("/home/pi/speaker_project/project/start.mp3")
+    pygame.mixer.music.load("/home/pi/speaker_project/project/answer.mp3")
     pygame.mixer.music.play()
 
     while pygame.mixer.music.get_busy() == True:
         continue
 
-    time.sleep(0.2)
+    time.sleep(0.3)
     bell()
     return None
 
@@ -29,14 +29,14 @@ def replay():
 
 
 def start():
-    pygame.mixer.music.load("/home/pi/speaker_project/project/start.wav")
+    pygame.mixer.music.load("/home/pi/speaker_project/project/start_bak.mp3")
     pygame.mixer.music.play()
 
     while pygame.mixer.music.get_busy() == True:
         continue
 
     time.sleep(0.2)
-    #bell()
+    bell()
     return None
 
 

@@ -3,11 +3,9 @@ from bleak import BleakClient
 import sys
 sys.path.append("./flask/views")
 import read_data
-#import a_test_data_push
-#import b_test_data_push
 import asyncio
 from multiprocessing import Process
-import Text
+import Text, multi_turn
 import requests
 import subprocess, time
 
@@ -21,18 +19,16 @@ def Order(_text):
         url = "http://localhost:10001/index/change"
         datas = {'val':val}
         requests.post(url, json=datas)
-        #subprocess.run(['python3 kill.py'], shell=True)
     else:
         if "운동" in _text:
             print("open!")
-            #subprocess.run(['killall chromium-browser'])
-            #subprocess.run(['python3 /home/pi/project/url/close.py'], shell=True)
-            #subprocess.run(['python3 /home/pi/project/url/new.py'], shell=True)
-            print("111111")
-            #time.sleep(1)
-            #Text.start()
             subprocess.run(['python3 /home/pi/speaker_project/project/url/go.py'], shell=True)
             Text.start()
+            #time.sleep(0.5)
+
+            bol = True
+            multi_turn.main(bol)
+            print("aaaaa")
             #exercise_status = True
             #url = "http://hangyu.pe.kr:9876/auth_m/open"
             #datas = {'word':_text}
@@ -46,14 +42,6 @@ def Order(_text):
             url = "http://localhost:10001/index/sign"
             datas = {'val':val}
             requests.post(url, json=datas)
-            #scan_status = True
-            #dumbbel_address = "CC:AE:7F:D3:7D:08"
-            #hand_address = "DF:65:5C:84:A1:44"
-            #muscle_address = "C2:6B:78:BB:76:90"
-            #uuid = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
-            #os.system('bash sensing.sh')
-            #subprocess.Popen(['python3 dumbbell_data_push.py'], shell=True)
-            #subprocess.Popen(['python3 hand_data_push.py'], shell=True)
             Text.bell()
 
 
