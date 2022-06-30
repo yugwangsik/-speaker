@@ -31,7 +31,7 @@ def Order(_text):
             print("111111")
             #time.sleep(1)
             #Text.start()
-            subprocess.run(['python3 /home/pi/project/url/go.py'], shell=True)
+            subprocess.run(['python3 /home/pi/speaker_project/project/url/go.py'], shell=True)
             Text.start()
             #exercise_status = True
             #url = "http://hangyu.pe.kr:9876/auth_m/open"

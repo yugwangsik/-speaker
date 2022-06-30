@@ -4,7 +4,7 @@ import time
 
 def play():
     pygame.mixer.init()
-    pygame.mixer.music.load("/home/pi/project/start.mp3")
+    pygame.mixer.music.load("/home/pi/speaker_project/project/start.mp3")
     pygame.mixer.music.play()
 
     while pygame.mixer.music.get_busy() == True:
@@ -17,7 +17,7 @@ def play():
 
 
 def replay():
-    pygame.mixer.music.load("/home/pi/project/replay.mp3")
+    pygame.mixer.music.load("/home/pi/speaker_project/project/replay.mp3")
     pygame.mixer.music.play()
 
     while pygame.mixer.music.get_busy() == True:
@@ -29,7 +29,7 @@ def replay():
 
 
 def start():
-    pygame.mixer.music.load("/home/pi/project/start.wav")
+    pygame.mixer.music.load("/home/pi/speaker_project/project/start.wav")
     pygame.mixer.music.play()
 
     while pygame.mixer.music.get_busy() == True:
@@ -42,7 +42,7 @@ def start():
 
 
 def bell():
-    pygame.mixer.music.load("/home/pi/project/bell.mp3")
+    pygame.mixer.music.load("/home/pi/speaker_project/project/bell.mp3")
     pygame.mixer.music.play()
 
     while pygame.mixer.music.get_busy() == True:
@@ -52,7 +52,7 @@ def bell():
 
 def fail():
     pygame.mixer.init()
-    pygame.mixer.music.load("/home/pi/project/fail.mp3")
+    pygame.mixer.music.load("/home/pi/speaker_project/project/fail.mp3")
     pygame.mixer.music.play()
 
     while pygame.mixer.music.get_busy() == True:
@@ -73,7 +73,7 @@ def success():
 def count(cnt):
     str = "count" + cnt + ".mp3"
     pygame.mixer.init()
-    pygame.mixer.music.load("/home/pi/project/count/" + str)
+    pygame.mixer.music.load("/home/pi/speaker_project/project/count/" + str)
     pygame.mixer.music.play()
 
     while pygame.mixer.music.get_busy() == True:
