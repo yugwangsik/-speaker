@@ -45,6 +45,14 @@ def Order(_text):
             Text.bell()
 
 
+    if "다운" in _text:
+        print("1")
+        data = True
+        url = "http://20.249.22.161:10005/index/update"
+        datas = {'data':data}
+        requests.post(url, json=datas)
+
+
 
 def Proceeding():
     val = 3

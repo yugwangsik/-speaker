@@ -12,7 +12,7 @@ def test():
     global keyword
     rawData = request.get_json()
     print(rawData["data"])
-    return None
+    return 1
 
 
 
@@ -21,7 +21,7 @@ def sign():
     global val
     rawData = request.get_json()
     val = rawData["val"]
-    return None
+    return 1
 
 
 
@@ -39,4 +39,4 @@ def change():
     global val
     rawData = request.get_json()
     val = rawData["val"]
-    return None
+    return 1
