@@ -19,6 +19,7 @@ def Order(_text):
         url = "http://localhost:10001/index/change"
         datas = {'val':val}
         requests.post(url, json=datas)
+
     else:
         if "운동" in _text:
             print("open!")
@@ -48,7 +49,7 @@ def Order(_text):
     if "다운" in _text:
         print("1")
         data = True
-        url = "http://20.249.22.161:10005/index/update"
+        url = "http://localhost:10001/index/update"
         datas = {'data':data}
         requests.post(url, json=datas)
 

@@ -12,7 +12,8 @@ import requests
 #address = "DE:81:4C:EA:A8:38"
 #address = "E3:B8:6C:B9:A2:71"
 #address2 = "E4:27:42:CA:AA:E5"
-address = "DF:65:5C:84:A1:44"
+#address = "DF:65:5C:84:A1:44"
+address = "EE:B1:5D:F7:74:59"
 #read_test = "5f78df94-798c-46f5-990a-b3eb6a065c88"
 read_RX = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
 read_TX = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
@@ -21,6 +22,21 @@ read_TX = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
 
 num = 0
 
+def notify_callback(sender: int, data: bytearray):
+    cnt = len(data)
+    t = data
+    t = t.decode('utf-8')
+    t = t.replace(" ", "")
+
+    print('plus value')
+    print(t)
+    print('===============================================================================================')
+    plus_data = t
+    url = "http://hangyu.pe.kr:9876/auth_m/keyword"
+    datas = {'plus':plus_data}
+    requests.post(url, json=datas)
+
+'''
 def notify_callback(sender: int, data: bytearray):
     global num
     num += 1
@@ -61,7 +77,7 @@ def notify_callback2(sender: int, data: bytearray):
         datas = {'dumbbell':big_data}
         requests.post(url, json=datas)
 
-
+'''
 
 async def main():
     global address1
@@ -74,32 +90,17 @@ async def run(address):
 #    try:
     async with BleakClient(address) as client:
         print('hand')
-#        nordic_services = await client.get_services()
-#        for service in nordic_services:
-#            for characteristic in service.characteristics:
-#                print(characteristic)
+        nordic_services = await client.get_services()
+        for service in nordic_services:
+            for characteristic in service.characteristics:
+                if 'write' in characteristic.properties:
+                    await client.write_gatt_char(read_RX, bytes(b'1'))
+                    #await client.write_gatt_char(read_RX, bytes(b'+'))
+                    print("+++")
 
-        await client.start_notify(read_TX, notify_callback)
-#                    if 'notify' in characteristic.properties:
-#                        read = await client.read_gatt_char(read_TX)
-#                        #print('read Data: ', read)
-#                        t = read
-#                        t = t.decode('utf-8')
-#                        print(read)
-#                        url = "http://hangyu.pe.kr:9876/auth_m/keyword"
-#                        big_data = t
-#                        datas = {'data':big_data}
-#                        requests.post(url, json=datas)
-                        #await client.start_notify(characteristic, notify_callback)
-
-#                    if 'write' in characteristic.properties:
-#                        await client.write_gatt_char(read_RX, bytes(b'1'))
-#                        await client.write_gatt_char(read_RX, bytes(b'+'))
-#                        print("+++")
-#
 #                    for i in range(10):
-#                        if 'notify' in characteristic.properties:
-#                            #await client.start_notify(characteristic, notify_callback)
+#                if 'notify' in characteristic.properties:
+#                    await client.start_notify(characteristic, notify_callback)
 #                            read = await client.read_gatt_char(read_TX)
 #                            print('read: ', read)
 #

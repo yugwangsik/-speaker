@@ -1,5 +1,7 @@
 from flask.templating import render_template
 from flask import Blueprint, url_for, render_template, flash, request, session, g, jsonify
+import os
+
 
 bp = Blueprint('index', __name__, url_prefix='/index')
 
@@ -12,7 +14,7 @@ def test():
     global keyword
     rawData = request.get_json()
     print(rawData["data"])
-    return 1
+    return " "
 
 
 
@@ -21,7 +23,7 @@ def sign():
     global val
     rawData = request.get_json()
     val = rawData["val"]
-    return 1
+    return " "
 
 
 
@@ -39,4 +41,10 @@ def change():
     global val
     rawData = request.get_json()
     val = rawData["val"]
-    return 1
+    return " "
+
+
+@bp.route("/update", methods=["GET", "POST"])   # '그만' 명령시 val값 변경
+def update():
+    os.system("sshpass -p raspberry scp /home/pi/upload/test.txt pi@192.168.1.50:/home/pi/upload")
+    return " "

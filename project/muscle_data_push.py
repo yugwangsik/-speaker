@@ -8,10 +8,11 @@ import requests
 
 
 #address = "E4:27:42:CA:AA:E5"
-address = "C2:6B:78:BB:76:90"
+#address = "C2:6B:78:BB:76:90"
 #address = "CC:AE:7F:D3:7D:08"
-read_data = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
-
+#read_data = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
+device_list = []
+address = ""
 
 def notify_callback(sender: int, data: bytearray):
     cnt = len(data)
@@ -23,9 +24,9 @@ def notify_callback(sender: int, data: bytearray):
     print(t)
     print('===============================================================================================')
     plus_data = t
-    url = "http://hangyu.pe.kr:9876/auth_m/keyword"
-    datas = {'plus':plus_data}
-    requests.post(url, json=datas)
+    #url = "http://hangyu.pe.kr:9876/auth_m/keyword"
+    #datas = {'plus':plus_data}
+    #requests.post(url, json=datas)
 
 #async def run(address, uuid, status):
 async def run(address):
@@ -46,12 +47,23 @@ async def run(address):
 
     print('disconnect')
 
-#def main(address, uuid, status):
-#    loop = asyncio.get_event_loop()
-#    loop.run_until_complete(run(address))
-#    print('done')
 
-#def main(address, uuid, status):
+
+async def device():
+    global device_list, address
+    devices = await BleakScanner.discover()
+    for d in devices:
+        val = str(d)
+        if "UART" in val:
+            device_list.append(str(d))
+
+    print(device_list)
+    for i in device_list:
+        print(i[0:17])
+        address = i[0:17]
+
+
 loop = asyncio.get_event_loop()
+loop.run_until_complete(device())
 loop.run_until_complete(run(address))
 print('done')
