@@ -8,8 +8,8 @@ import requests
 import json
 
 
-address = "E4:27:42:CA:AA:E5"
-#address = "DF:65:5C:84:A1:44"
+#address = "E4:27:42:CA:AA:E5"
+address = "DF:65:5C:84:A1:44"
 #address = "CC:AE:7F:D3:7D:08"
 read_data = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
 num = 0
@@ -19,17 +19,15 @@ data_buffer = []
 
 def notify_callback(sender: int, data: bytearray):
     global test_list, num
-    #test_list.append(data)
-    #num += 1
-    #global num
     num += 1
     data_buffer.append(data)
     #cnt = len(data)
-    #change = "B" * 26
-    #big_data = struct.unpack(f'{change}', data)
+    change = "B" * 26
+    big_data = struct.unpack(f'{change}', data)
     #print("hand value")
-    print(data)
-    #print(big_data)
+    #print(data)
+    print(big_data)
+
     print(num)
     #print(data)
     #print('===============================================================================================')
@@ -55,6 +53,8 @@ def notify_callback(sender: int, data: bytearray):
     #print(response.json())
 
 
+
+
 #async def run(address, uuid, status):
 async def run(address):
     global test_list, num, data_buffer
@@ -71,24 +71,21 @@ async def run(address):
                             while True:
                                 task = asyncio.create_task(client.start_notify(characteristic, notify_callback))
                                 await task
+                                #senser_run = await task
                             #while num < 7800:
                             #for i in range(10000):
+                                #await client.start_notify(characteristic, senser_run)
                                 #await client.start_notify(characteristic, notify_callback)
 
 
 
-        #print(len(test_list))
         print('disconnect')
-    except:
+    except Exception as e:
         print(data_buffer)
         print(len(data_buffer))
+        print(e)
 
-#def main(address, uuid, status):
-#    loop = asyncio.get_event_loop()
-#    loop.run_until_complete(run(address))
-#    print('done')
 
-#def main(address, uuid, status):
 loop = asyncio.get_event_loop()
 loop.run_until_complete(run(address))
 print('done')
