@@ -14,7 +14,7 @@ address = "E4:27:42:CA:AA:E5"
 read_data = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
 num = 0
 test_list = []
-
+data_buffer = []
 
 
 def notify_callback(sender: int, data: bytearray):
@@ -23,6 +23,7 @@ def notify_callback(sender: int, data: bytearray):
     #num += 1
     #global num
     num += 1
+    data_buffer.append(data)
     #cnt = len(data)
     #change = "B" * 26
     #big_data = struct.unpack(f'{change}', data)
@@ -56,25 +57,31 @@ def notify_callback(sender: int, data: bytearray):
 
 #async def run(address, uuid, status):
 async def run(address):
-    global test_list, num
-    async with BleakClient(address) as client:
-        print('connected')
-        services = await client.get_services()
-        for service in services:
-            for characteristic in service.characteristics:
-                #if characteristic.uuid == uuid:
-                if characteristic.uuid == read_data:
-                    if 'notify' in characteristic.properties:
-                        #while status == True:
-                        while True:
-                        #while num < 7800:
-                        #for i in range(10000):
-                            await client.start_notify(characteristic, notify_callback)
+    global test_list, num, data_buffer
+    try:
+        async with BleakClient(address) as client:
+            print('connected')
+            services = await client.get_services()
+            for service in services:
+                for characteristic in service.characteristics:
+                    #if characteristic.uuid == uuid:
+                    if characteristic.uuid == read_data:
+                        if 'notify' in characteristic.properties:
+                            #while status == True:
+                            while True:
+                                task = asyncio.create_task(client.start_notify(characteristic, notify_callback))
+                                await task
+                            #while num < 7800:
+                            #for i in range(10000):
+                                #await client.start_notify(characteristic, notify_callback)
 
 
 
-    print(len(test_list))
-    print('disconnect')
+        #print(len(test_list))
+        print('disconnect')
+    except:
+        print(data_buffer)
+        print(len(data_buffer))
 
 #def main(address, uuid, status):
 #    loop = asyncio.get_event_loop()
