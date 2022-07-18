@@ -47,12 +47,19 @@ def Order(_text):
 
 
     if "다운" in _text:
-        print("1")
+        #print("1")
         data = True
         url = "http://localhost:10001/index/update"
         datas = {'data':data}
         requests.post(url, json=datas)
 
+
+    if "보행" in _text:
+        subprocess.run(['python3 /home/pi/speaker_project/project/url/walk.py'], shell=True)
+
+
+    if "밴드" in _text:
+        subprocess.run(['python3 /home/pi/speaker_project/project/url/band.py'], shell=True)
 
 
 def Proceeding():
