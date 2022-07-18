@@ -62,6 +62,10 @@ def Order(_text):
         subprocess.run(['python3 /home/pi/speaker_project/project/url/band.py'], shell=True)
 
 
+    if "메인" in _text:
+        subprocess.run(['python3 /home/pi/speaker_project/project/url/main_page.py'], shell=True)
+
+
 def Proceeding():
     val = 3
     url = "http://hangyu.pe.kr:9876/auth_m/exercise"
