@@ -73,3 +73,4 @@ def main(_bol):
                     requests.post(url, json=datas)
                     print("선택 번호: " + text)
 
+            print(choice)

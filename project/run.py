@@ -35,7 +35,7 @@ def Trigger(client, hints):
             Text.play()
             return True
         else:
-            Text.replay()
+            #Text.replay()
             return False
     except Exception as e:
         return False
