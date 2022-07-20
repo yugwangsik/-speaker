@@ -70,7 +70,7 @@ async def run(address):
 
                         await client.start_notify(characteristic, notify_callback)
                         value1 = value
-                        print(f'value = {value} | value1 = {value1}')
+                        print(f'value1 = {value1} | value = {value}')
                 #if 'write' in characteristic.properties:
                     #await client.write_gatt_char(read_RX, bytes(b'1'))
                     #await client.write_gatt_char(read_RX, bytes(b'+'))
