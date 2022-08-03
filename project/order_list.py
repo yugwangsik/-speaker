@@ -68,7 +68,7 @@ def Order(_text):
     if "화면" in _text:
         #print("1")
         data = True
-        url = "http://192.168.1.50:10001/index/test"
+        url = "http://192.168.1.50:10001/index/tt"
         datas = {'data':data}
         requests.post(url, json=datas)
 
