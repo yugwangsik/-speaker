@@ -65,6 +65,13 @@ def Order(_text):
     if "메인" in _text:
         subprocess.run(['python3 /home/pi/speaker_project/project/url/main_page.py'], shell=True)
 
+    if "화면" in _text:
+        #print("1")
+        data = True
+        url = "http://192.168.1.50:10001/index/test"
+        datas = {'data':data}
+        requests.post(url, json=datas)
+
 
 def Proceeding():
     val = 3
