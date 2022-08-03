@@ -21,9 +21,21 @@ def get_hints(language_code):
 
     return None
 
+
+def logging_time(original_fn):
+    def wrapper_fn(*args, **kwargs):
+        start_time = time.time()
+        result = original_fn(*args, **kwargs)
+        end_time = time.time()
+        print("WorkingTime[{}]: {} sec".format(original_fn.__name__, end_time-start_time))
+        return result
+    return wrapper_fn
+
+
 def locale_language():
     language, _ = locale.getdefaultlocale()
     return language
+
 
 def Trigger(client, hints):
     keyword = '유리'
