@@ -13,14 +13,15 @@ val = "0"       # 센서 서버 전송 판단 변수( 0이면 전송X, 1이면 �
 stat = "0"
 
 
-def logging_time(original_fn):
-    def wrapper_fn(*args, **kwargs):
-        start_time = time.time()
-        result = original_fn(*args, **kwargs)
-        end_time = time.time()
-        print("WorkingTime[{}]: {} sec".format(original_fn.__name__, end_time-start_time))
-        return result
-    return wrapper_fn
+#def logging_time(original_fn):
+#    def wrapper_fn(*args, **kwargs):
+#        start_time = time.time()
+#        result = original_fn(*args, **kwargs)
+#        end_time = time.time()
+#        print("WorkingTime[{}]: {} sec".format(original_fn.__name__, end_time-start_time))
+#        return result
+#    return wrapper_fn
+
 
 @bp.route("/test", methods=["GET", "POST"])
 def test():
@@ -64,10 +65,13 @@ def update():
 
 
 @bp.route("/tt", methods=["GET", "POST"])
-@logging_time
+#@logging_time
 def tt():
     global stat
-    print("tt")
+    print("========================================================")
+    print("========================================================")
+    print("========================================================")
+    print("========================================================")
     rawData = request.get_json()
     stat = rawData['data']
     #subprocess.run(['python3 /home/pi/speaker_project/project/url/test.py'], shell=True)
@@ -76,7 +80,7 @@ def tt():
 
 
 @bp.route("/t", methods=["GET", "POST"])
-@logging_time
+#@logging_time
 def t():
     global stat
     print("t")
