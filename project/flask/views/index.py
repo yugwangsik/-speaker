@@ -10,6 +10,8 @@ import time
 bp = Blueprint('index', __name__, url_prefix='/index')
 
 val = "0"       # 센서 서버 전송 판단 변수( 0이면 전송X, 1이면 전송O )
+stat = ""
+
 
 def logging_time(original_fn):
     def wrapper_fn(*args, **kwargs):
@@ -61,10 +63,19 @@ def update():
     return " "
 
 
-@bp.route("/tt", methods=["GET", "POST"])   # '그만' 명령시 val값 변경
+@bp.route("/tt", methods=["GET", "POST"])
 @logging_time
 def tt():
     print("Check")
     subprocess.run(['python3 /home/pi/speaker_project/project/url/test.py'], shell=True)
+    #os.system("chromium-browser --kiosk http://34.64.199.227:9876/counter")
+    return " "
+
+
+@bp.route("/t", methods=["GET", "POST"])
+@logging_time
+def t():
+    print("Check")
+    #subprocess.run(['python3 /home/pi/speaker_project/project/url/test.py'], shell=True)
     #os.system("chromium-browser --kiosk http://34.64.199.227:9876/counter")
     return " "
