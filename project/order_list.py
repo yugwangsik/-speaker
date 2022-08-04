@@ -8,8 +8,10 @@ from multiprocessing import Process
 import Text, multi_turn
 import requests
 import subprocess, time
+import timer
 
 
+@timer.logging_time
 def Order(_text):
     print("order_list.py: ", _text)
 
