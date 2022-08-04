@@ -70,12 +70,12 @@ def Order(_text):
 
     print("222")
     if "화면" in _text:
-        print("1")
-        subprocess.run(['python3 /home/pi/speaker_project/project/url/test.py'], shell=True)
-        #data = True
-        #url = "http://192.168.1.50:10001/index/tt"
-        #datas = {'data':data}
-        #ad = requests.post(url, json=datas)
+        #print("1")
+        #subprocess.run(['python3 /home/pi/speaker_project/project/url/test.py'], shell=True)
+        data = "1"
+        url = "http://192.168.1.50:10001/index/tt"
+        datas = {'data':data}
+        requests.post(url, json=datas)
         #print(ad.status_code)
         #try:
             #requests.post(url, json=datas)
