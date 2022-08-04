@@ -1,6 +1,7 @@
 from flask.templating import render_template
 from flask import Blueprint, url_for, render_template, flash, request, session, g, jsonify
 import os
+import timer
 
 
 bp = Blueprint('index', __name__, url_prefix='/index')
@@ -51,6 +52,7 @@ def update():
 
 
 @bp.route("/tt", methods=["GET", "POST"])   # '그만' 명령시 val값 변경
+@timer.logging_time
 def tt():
     print("Check")
     os.system("chromium-browser --kiosk http://34.64.199.227:9876/counter")
