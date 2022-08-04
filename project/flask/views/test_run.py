@@ -1,6 +1,6 @@
 #from flask.templating import render_template
 #from flask import Blueprint, url_for, render_template, flash, request, session, g, jsonify
-import requests
+import requests, subprocess
 import timer
 
 ad = None
@@ -18,5 +18,10 @@ while True:
     data = " "
     datas = {'data':data}
     ad = requests.post(url, json=datas)
+    ad = ad.json()
+    ad = ad['num']
+    #print(ad)
+    #print(type(ad))
     if ad == "1":
+        #print(ad)
         check()

@@ -68,12 +68,13 @@ def update():
 #@logging_time
 def tt():
     global stat
-    print("========================================================")
-    print("========================================================")
-    print("========================================================")
-    print("========================================================")
+    #print("========================================================")
+    #print("========================================================")
+    #print("========================================================")
+    #print("========================================================")
     rawData = request.get_json()
     stat = rawData['data']
+    print(stat)
     #subprocess.run(['python3 /home/pi/speaker_project/project/url/test.py'], shell=True)
     #os.system("chromium-browser --kiosk http://34.64.199.227:9876/counter")
     return " "
@@ -83,7 +84,9 @@ def tt():
 #@logging_time
 def t():
     global stat
-    print("t")
+    print(stat)
     #subprocess.run(['python3 /home/pi/speaker_project/project/url/test.py'], shell=True)
     #os.system("chromium-browser --kiosk http://34.64.199.227:9876/counter")
-    return stat
+    return jsonify({
+        "num" : stat
+    })
