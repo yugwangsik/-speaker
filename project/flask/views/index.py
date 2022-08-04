@@ -65,6 +65,6 @@ def update():
 @logging_time
 def tt():
     print("Check")
-    #subprocess.run(['python3 /home/pi/speaker_project/project/url/test.py'], shell=True)
-    os.system("chromium-browser --kiosk http://34.64.199.227:9876/counter")
+    subprocess.run(['python3 /home/pi/speaker_project/project/url/test.py'], shell=True)
+    #os.system("chromium-browser --kiosk http://34.64.199.227:9876/counter")
     return " "
