@@ -1,6 +1,6 @@
 
 ## Text.py
-- ####tts(text)
+-#### tts(text)
 tts() 함수를 호출할 때 매겨변수로 string을 넘겨주면 해당 데이터를 text변수로 활용한다. text변수는 
 
 
