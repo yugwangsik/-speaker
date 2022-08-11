@@ -1,4 +1,4 @@
 import os
 
 
-os.system('chromium-browser --kiosk http://hangyu.pe.kr:9876/dumbbell_graph/tt')
+os.system('chromium-browser --kiosk http://34.64.199.227:9876/rasp/dumbbell')

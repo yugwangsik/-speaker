@@ -44,7 +44,7 @@ def main(_bol):
                 if "1" in text:
                     subprocess.run(['python3 /home/pi/speaker_project/project/url/choice.py'], shell=True)
                     choice = 1
-                    url = "http://hangyu.pe.kr:9876/auth_m/select"
+                    url = "http://34.64.199.227:9876/rasp/dumbbell/select"
                     datas = {'choice':choice}
                     requests.post(url, json=datas)
                     print("선택 번호: " + text)
@@ -52,7 +52,7 @@ def main(_bol):
                 elif "이" in text:
                     subprocess.run(['python3 /home/pi/speaker_project/project/url/choice.py'], shell=True)
                     choice = 2
-                    url = "http://hangyu.pe.kr:9876/auth_m/select"
+                    url = "http://34.64.199.227:9876/rasp/dumbbell/select"
                     datas = {'choice':choice}
                     requests.post(url, json=datas)
                     print("선택 번호: " + text)
@@ -60,7 +60,7 @@ def main(_bol):
                 elif "3" in text:
                     subprocess.run(['python3 /home/pi/speaker_project/project/url/choice.py'], shell=True)
                     choice = 3
-                    url = "http://hangyu.pe.kr:9876/auth_m/select"
+                    url = "http://34.64.199.227:9876/rasp/dumbbell/select"
                     datas = {'choice':choice}
                     requests.post(url, json=datas)
                     print("선택 번호: " + text)
@@ -68,7 +68,7 @@ def main(_bol):
                 elif "4" in text:
                     subprocess.run(['python3 /home/pi/speaker_project/project/url/choice.py'], shell=True)
                     choice = 4
-                    url = "http://hangyu.pe.kr:9876/auth_m/select"
+                    url = "http://34.64.199.227:9876/rasp/dumbbell/select"
                     datas = {'choice':choice}
                     requests.post(url, json=datas)
                     print("선택 번호: " + text)
