@@ -1,7 +1,10 @@
 
 ## Text.py
 - #### tts(text)
-tts() 함수를 호출할 때 매겨변수로 string을 넘겨주면 해당 데이터를 text변수로 활용한다. text변수는 
+tts() 함수를 호출할 때 매겨변수로 string을 넘겨주면 해당 데이터를 text변수로 활용한다. text변수는 Google Text-To-Speech API를 통해 MP3파일로 리턴 받을 수 있다.
+
+- #### count(cnt)
+count() 함수를 호출할 때 매겨변수로 string을 넘겨주면 해당 데이터를 cnt변수로 활용한다. cnt변수는 현재 본인이 진행한 운동 횟수에 따라서 그에 맞는 음성이 재생 된다.
 
 
 ## Nordic.py
