@@ -10,27 +10,31 @@ import requests
 #address = "E4:27:42:CA:AA:E5"
 #address = "C2:6B:78:BB:76:90"
 #address = "CC:AE:7F:D3:7D:08"
+address = "FA:EE:D3:5C:A0:D1"
 read_data = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
 read_RX = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
 
 device_list = []
-address = ""
+#address = ""
 
 value1 = 0
 
 
 def notify_callback(sender: int, data: bytearray):
+    global address
     cnt = len(data)
     t = data
     t = t.decode('utf-8')
     t = t.replace(" ", "")
 
     print('plus value')
+    print(address)
     print(t)
     print('===============================================================================================')
     plus_data = t
-    url = "http://hangyu.pe.kr:9876/auth_m/keyword"
-    datas = {'plus':plus_data}
+    url = "http://34.64.199.227:9876/muscle/push"
+    datas = {'plus':plus_data,
+             'address':address}
     requests.post(url, json=datas)
 
 
@@ -43,33 +47,36 @@ async def run(address):
         for service in services:
             for characteristic in service.characteristics:
                 if 'notify' in characteristic.properties:
+                    await client.write_gatt_char(read_RX, bytes(b'1'))
+                    for i in range(1,4):
+                        await client.write_gatt_char(read_RX, bytes(b'+'))
                     while True:
-                        url = "http://hangyu.pe.kr:9876/auth_m/send_mod"
-                        void = {'void':" "}
-                        mod = requests.post(url, json=void)
-                        mod1 = mod.json()
-                        mod = mod1["data"]
-                        value = mod1["value"]
-                        #if mod == "+" or mod == "-":
-                            #sign = mod
-                        #stat = mod.decode('utf-8')
-                        #print(mod)
+#                        url = "http://hangyu.pe.kr:9876/auth_m/send_mod"
+#                        void = {'void':" "}
+#                        mod = requests.post(url, json=void)
+#                        mod1 = mod.json()
+#                        mod = mod1["data"]
+#                        value = mod1["value"]
+#                        #if mod == "+" or mod == "-":
+#                            #sign = mod
+#                        #stat = mod.decode('utf-8')
+#                        #print(mod)
 
 
-                        if mod == "1":
-                            await client.write_gatt_char(read_RX, bytes(b'1'))
-                        elif mod == "2":
-                            await client.write_gatt_char(read_RX, bytes(b'2'))
-                        elif mod == "+" and value != value1:
-                        #elif mod == "+":
-                            await client.write_gatt_char(read_RX, bytes(b'+'))
-                        elif mod == "-" and value != value1:
-                        #elif mod == "-":
-                            await client.write_gatt_char(read_RX, bytes(b'-'))
+#                        if mod == "1":
+#                            await client.write_gatt_char(read_RX, bytes(b'1'))
+#                        elif mod == "2":
+#                            await client.write_gatt_char(read_RX, bytes(b'2'))
+#                        elif mod == "+" and value != value1:
+#                        #elif mod == "+":
+#                            await client.write_gatt_char(read_RX, bytes(b'+'))
+#                        elif mod == "-" and value != value1:
+#                        #elif mod == "-":
+#                            await client.write_gatt_char(read_RX, bytes(b'-'))
 
                         await client.start_notify(characteristic, notify_callback)
-                        value1 = value
-                        print(f'value = {value} | value1 = {value1}')
+                        #value1 = value
+                        #print(f'value = {value} | value1 = {value1}')
                 #if 'write' in characteristic.properties:
                     #await client.write_gatt_char(read_RX, bytes(b'1'))
                     #await client.write_gatt_char(read_RX, bytes(b'+'))
@@ -92,7 +99,7 @@ async def run(address):
     print('disconnect')
 
 
-
+'''
 async def device():
     global device_list, address
     devices = await BleakScanner.discover()
@@ -105,9 +112,9 @@ async def device():
     for i in device_list:
         print(i[0:17])
         address = i[0:17]
-
+'''
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(device())
+#loop.run_until_complete(device())
 loop.run_until_complete(run(address))
 print('done')
