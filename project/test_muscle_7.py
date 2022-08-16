@@ -10,7 +10,7 @@ import requests
 #address = "E4:27:42:CA:AA:E5"
 #address = "C2:6B:78:BB:76:90"
 #address = "CC:AE:7F:D3:7D:08"
-address = "FF:DD:C6:CA:15:14"
+address = "E2:1F:EA:0F:46:B3"
 read_data = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
 read_RX = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
 
@@ -34,7 +34,7 @@ def notify_callback(sender: int, data: bytearray):
     plus_data = t
     url = "http://34.64.199.227:9876/muscle/push"
     datas = {'plus':plus_data,
-             'address':address + " 3번"}
+             'address':address + " 7번"}
     requests.post(url, json=datas)
 
 
@@ -51,11 +51,15 @@ async def run(address):
 
                     await client.write_gatt_char(read_RX, bytes(b'+'))
                     await client.write_gatt_char(read_RX, bytes(b'+'))
-
-                    #for i in range(1, 3):
+                    await client.write_gatt_char(read_RX, bytes(b'+'))
+                    await client.write_gatt_char(read_RX, bytes(b'+'))
+                    await client.write_gatt_char(read_RX, bytes(b'+'))
+                    await client.write_gatt_char(read_RX, bytes(b'+'))
+                    #for i in range(1,4):
                         #await client.write_gatt_char(read_RX, bytes(b'+'))
                     while True:
-
+#                        for i in range(1, 7):
+#                            await client.write_gatt_char(read_RX, bytes(b'+'))
 #                        url = "http://hangyu.pe.kr:9876/auth_m/send_mod"
 #                        void = {'void':" "}
 #                        mod = requests.post(url, json=void)

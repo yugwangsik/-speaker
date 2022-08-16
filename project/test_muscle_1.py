@@ -34,7 +34,7 @@ def notify_callback(sender: int, data: bytearray):
     plus_data = t
     url = "http://34.64.199.227:9876/muscle/push"
     datas = {'plus':plus_data,
-             'address':address}
+             'address':address + " 1번"}
     requests.post(url, json=datas)
 
 
@@ -48,9 +48,11 @@ async def run(address):
             for characteristic in service.characteristics:
                 if 'notify' in characteristic.properties:
                     await client.write_gatt_char(read_RX, bytes(b'1'))
-                    for i in range(1, 3):
-                        await client.write_gatt_char(read_RX, bytes(b'+'))
+                    #for i in range(1, 3):
+                        #await client.write_gatt_char(read_RX, bytes(b'+'))
                     while True:
+                        #for i in range(1, 3):
+                            #await client.write_gatt_char(read_RX, bytes(b'+'))
 #                        url = "http://hangyu.pe.kr:9876/auth_m/send_mod"
 #                        void = {'void':" "}
 #                        mod = requests.post(url, json=void)
